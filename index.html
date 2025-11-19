@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防范虚假信息 - 告别谣言与诈骗</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 配置Tailwind自定义主题 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#0E3BA1',
+            accent: '#36CFC9',
+            dark: '#1D2129',
+            light: '#F2F3F5',
+            success: '#00B42A' // 新增成功色，用于按钮
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    </script>
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+      }
+      .gradient-overlay {
+        background: linear-gradient(180deg, rgba(22,93,255,0) 0%, rgba(22,93,255,0.1) 100%);
+      }
+    }
+  </style>
+  <style>
+    /* 全局样式 */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #F7F8FA;
+    }
+    /* 动画效果 */
+    .fade-in {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* 卡片悬停提示 */
+    .card-tooltip {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    .card-container:hover .card-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* 云背景装饰 */
+    .cloud-decoration {
+      background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60' viewBox='0 0 100 60'%3E%3Cpath d='M30,40 Q40,20 50,40 Q60,60 70,40 Q80,20 90,40 L100,40 L100,60 L0,60 L0,40 L30,40 Z' fill='%23E8F3FF' opacity='0.3'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 100px 60px;
+    }
+  </style>
+</head>
+<body class="font-sans text-dark">
+  <!-- 导航栏 - 名称改为"虚假信息防范助手" -->
+  <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <i class="fa fa-shield text-primary text-2xl mr-2"></i>
+          <span class="text-xl font-bold text-primary">虚假信息防范助手</span>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="text-dark hover:text-primary transition-colors font-medium">首页</a>
+          <a href="#features" class="text-dark hover:text-primary transition-colors font-medium">核心功能</a>
+        </div>
+        <div class="md:hidden">
+          <button class="text-dark hover:text-primary">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 第一页：首页 - 可直接修改右侧图片链接 -->
+  <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 cloud-decoration">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <!-- 左侧标语区域 -->
+        <div class="md:w-1/2 md:pr-12 fade-in">
+          <h1 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold leading-tight text-dark mb-6 text-shadow">
+            希望每个人都远离<br>谣言与诈骗的困扰
+          </h1>
+          <p class="text-[clamp(0.75rem,1.4vw,0.95rem)] text-gray-600 mb-8 leading-relaxed">
+            输入可疑信息，基于官方知识库上千条数据进行查证，从而辨别真伪，同时也可根据现实情境生成劝说文案，减少沟通成本，让我们和父母都摆脱谣言与诈骗的困扰
+          </p>
+          <button class="inline-flex items-center px-6 py-3 bg-success text-white rounded-lg shadow-md hover:bg-green-700 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+            下方查看详情 <i class="fa fa-arrow-down ml-2"></i>
+          </button>
+        </div>
+        <!-- 右侧图片：可直接替换 src 中的链接，自动适配尺寸 -->
+        <div class="md:w-1/2 mt-10 md:mt-0 md:pl-4 fade-in" style="animation-delay: 0.3s">
+          <div class="relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-lg opacity-70"></div>
+            <!-- 图片链接修改处1：替换下面的 src 值即可 -->
+            <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg" alt="远离谣言，开心生活" class="relative rounded-2xl shadow-lg w-full h-auto object-cover" />
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent rounded-b-2xl"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第二页：核心功能 - 文案字体已放大为 text-sm -->
+  <section id="features" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark mb-4">核心功能</h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">点击相关情境，尝试使用我们的AGENT功能</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <!-- 卡片1：健康知识查证 - 可修改图片链接 -->
+        <a href="https://adp.cloud.tencent.com/webim_exp/#/chat/ExYNOe" target="_blank" class="block">
+          <div class="card-container bg-light rounded-xl overflow-hidden shadow-md card-hover h-full flex flex-col">
+            <div class="relative h-64 overflow-hidden flex-shrink-0">
+              <!-- 图片链接修改处2：替换下面的 src 值即可 -->
+              <img src="https://images.pexels.com/photos/159211/headache-pain-pills-medication-159211.jpeg" alt="健康知识查证" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-center mb-3 min-h-[40px]">健康知识查证</h3>
+              <!-- 文案字体：text-sm（已放大，比原来的 text-xs 易读） -->
+              <p class="card-tooltip text-gray-600 text-left px-1 text-sm">
+                基于科普中国的专业健康文章，权威查证健康知识，不再忧心忡忡地看待健康养生问题
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- 卡片2：诈骗陷阱识别 - 可修改图片链接 -->
+        <a href="https://adp.cloud.tencent.com/webim_exp/#/chat/soCBtl" target="_blank" class="block">
+          <div class="card-container bg-light rounded-xl overflow-hidden shadow-md card-hover h-full flex flex-col">
+            <div class="relative h-64 overflow-hidden flex-shrink-0">
+              <!-- 图片链接修改处3：替换下面的 src 值即可 -->
+              <img src="https://images.pexels.com/photos/164501/pexels-photo-164501.jpeg" alt="诈骗陷阱识别" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-center mb-3 min-h-[40px]">诈骗陷阱识别</h3>
+              <!-- 文案字体：text-sm -->
+              <p class="card-tooltip text-gray-600 text-left px-1 text-sm">
+                基于反诈宣传手册，识别现实情境，让身边的人尽可能远离诈骗陷阱
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- 卡片3：沟通文案生成 - 可修改图片链接 -->
+        <a href="https://adp.cloud.tencent.com/webim_exp/#/chat/OPjxpS" target="_blank" class="block">
+          <div class="card-container bg-light rounded-xl overflow-hidden shadow-md card-hover h-full flex flex-col">
+            <div class="relative h-64 overflow-hidden flex-shrink-0">
+              <!-- 图片链接修改处4：替换下面的 src 值即可 -->
+              <img src="https://images.pexels.com/photos/1054713/pexels-photo-1054713.jpeg" alt="沟通文案生成" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-center mb-3 min-h-[40px]">沟通文案生成</h3>
+              <!-- 文案字体：text-sm -->
+              <p class="card-tooltip text-gray-600 text-left px-1 text-sm">
+                信息查证不仅在于知道，更在于防范和行动，为您生成定制文案进行及时沟通
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-4 md:mb-0">
+          <i class="fa fa-shield text-primary text-2xl mr-2"></i>
+          <span class="text-xl font-bold">虚假信息防范助手</span>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-weibo text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-wechat text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-envelope text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mt-6 text-center text-gray-400 text-sm">
+        <p>© 2025 虚假信息防范助手 版权所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 免责声明 -->
+  <div class="bg-gray-50 py-4 border-t border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-[0.65rem] text-gray-500 leading-tight">
+        AI模型的能力存在局限，生成的内容可能包含错误、偏见或未能反映最新动态。该内容不应被视为专业的医疗、法律、财务或其他领域的建议。用户不应将其作为采取任何行动的单一依据。
+      </p>
+      <p class="text-[0.65rem] text-gray-500 mt-2 text-right">
+        联系人：凉拌折耳根多加辣
+      </p>
+    </div>
+  </div>
+
+  <!-- 回到顶部按钮 -->
+  <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-secondary">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 回到顶部按钮
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+        backToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopBtn.classList.remove('opacity-100', 'visible');
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+      }
+
+      // 导航栏滚动效果
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('shadow-md');
+        nav.classList.remove('shadow-sm');
+      } else {
+        nav.classList.remove('shadow-md');
+        nav.classList.add('shadow-sm');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // 图片加载动画
+    document.querySelectorAll('img').forEach(img => {
+      img.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+      img.onload = () => {
+        img.classList.remove('opacity-0');
+        img.classList.add('opacity-100');
+      };
+      if (img.complete) {
+        img.classList.remove('opacity-0');
+        img.classList.add('opacity-100');
+      }
+    });
+  </script>
+</body>
+</html>
